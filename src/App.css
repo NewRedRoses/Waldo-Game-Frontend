@@ -1,3 +1,33 @@
+:root {
+  --red-color: #ff0000;
+  --white-color: #fff;
+  --border-color: #e5e5e5;
+}
 body {
-  font-family: "Pixelify Sans", Arial, Helvetica, sans-serif;
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  background-color: var(--white-color);
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+.content {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+img {
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+}
+.greeting-msg-container {
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
 }
