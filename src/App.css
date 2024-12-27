@@ -2,9 +2,11 @@
   --red-color: #ff0000;
   --white-color: #fff;
   --border-color: #e5e5e5;
+  --black-color: #14213d;
 }
 body {
   font-family: "Rubik", Arial, Helvetica, sans-serif;
+  color: var(--black-color);
   font-weight: bold;
   background-color: var(--white-color);
 }
@@ -15,6 +17,7 @@ body {
   padding-bottom: 10px;
 }
 .content {
+  position: relative;
   padding-top: 10px;
   display: flex;
   flex-direction: column;
@@ -26,8 +29,25 @@ img {
 }
 .greeting-msg-container {
   padding: 10px;
-  background-color: red;
-  color: white;
   border: 2px solid var(--border-color);
   border-radius: 10px;
+}
+.dropdown-container {
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 10px;
+  background-color: var(--white-color);
+}
+.dropdown-container ul {
+  padding: 10px;
+  list-style-type: none;
+  margin: 0;
+}
+
+.dropdown-container li {
+  padding-bottom: 5px;
+}
+.dropdown-container li:hover {
+  text-decoration: underline;
 }
