@@ -7,7 +7,6 @@
 body {
   font-family: "Rubik", Arial, Helvetica, sans-serif;
   color: var(--black-color);
-  font-weight: bold;
   background-color: var(--white-color);
 }
 .navbar-container {
@@ -38,6 +37,8 @@ img {
   width: fit-content;
   padding: 10px;
   background-color: var(--white-color);
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .dropdown-container ul {
   padding: 10px;
