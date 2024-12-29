@@ -5,7 +5,7 @@ export default function DropdownMenu({ list, caption, urlToSendTo, position }) {
 
   function sendSelection() {
     axios
-      .post(urlToSendTo, selection)
+      .post(urlToSendTo, { selection, position })
       .then((response) => console.log(response.data));
   }
 
@@ -25,18 +25,18 @@ export default function DropdownMenu({ list, caption, urlToSendTo, position }) {
       {console.log(position)}
       <div className="dropdown-caption">{caption}</div>
       <ul>
-        {list.map((item, index) => {
+        {list.map((item) => {
           return (
-            <div key={index} className="dropdown-content">
+            <div key={item.id} className="dropdown-content">
               <input
                 type="radio"
                 name="selection"
-                id={item}
-                checked={selection == item}
+                id={item.name}
+                checked={selection == item.name}
                 onChange={onSelectionChange}
-                value={item}
+                value={item.name}
               />
-              <label htmlFor={item}>{item}</label>
+              <label htmlFor={item.name}>{item.name}</label>
             </div>
           );
         })}
