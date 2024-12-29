@@ -52,3 +52,15 @@ img {
 .dropdown-container li:hover {
   text-decoration: underline;
 }
+.pokemons-container {
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+}
+.pokemon-item {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
