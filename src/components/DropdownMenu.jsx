@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 export default function DropdownMenu({ list, caption, urlToSendTo, position }) {
-  const [selection, setSelection] = useState("");
+  const [pkIdSelected, setPkIdSelected] = useState("");
 
   function sendSelection() {
     axios
-      .post(urlToSendTo, { selection, position })
+      .post(urlToSendTo, { pkIdSelected, position })
       .then((response) => console.log(response.data));
   }
 
   function onSelectionChange(e) {
-    setSelection(e.target.value);
+    setPkIdSelected(e.target.value);
   }
 
   return (
@@ -22,7 +22,7 @@ export default function DropdownMenu({ list, caption, urlToSendTo, position }) {
         top: `${position.y}px`,
       }}
     >
-      {console.log(position)}
+      {console.log(position, pkIdSelected)}
       <div className="dropdown-caption">{caption}</div>
       <ul>
         {list.map((item) => {
@@ -30,13 +30,13 @@ export default function DropdownMenu({ list, caption, urlToSendTo, position }) {
             <div key={item.id} className="dropdown-content">
               <input
                 type="radio"
-                name="selection"
-                id={item.name}
-                checked={selection == item.name}
+                name="pkIdSelected"
+                id={item.id}
+                checked={pkIdSelected == item.id}
                 onChange={onSelectionChange}
-                value={item.name}
+                value={item.id}
               />
-              <label htmlFor={item.name}>{item.name}</label>
+              <label htmlFor={item.id}>{item.name}</label>
             </div>
           );
         })}

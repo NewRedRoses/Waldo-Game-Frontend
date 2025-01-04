@@ -19,7 +19,10 @@ function App() {
   }, []);
 
   function handleMouseClick(e) {
-    setClickCoords({ x: e.clientX, y: e.clientY });
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setClickCoords({ x, y });
     setShowDropdown(!showDropdown);
   }
 
@@ -40,6 +43,8 @@ function App() {
         src={PokemonWaldoPicture}
         alt="Pallet Town filled with a wide range of Pokemons cluttered everywhere"
         width={800}
+        height={600}
+        style={{ objectFit: "contain" }}
         onClick={(e) => handleMouseClick(e)}
       />
       {showDropdown && (
