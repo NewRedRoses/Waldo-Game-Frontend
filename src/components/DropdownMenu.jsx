@@ -1,12 +1,48 @@
 import axios from "axios";
 import { useState } from "react";
-export default function DropdownMenu({ list, caption, urlToSendTo, position }) {
+export default function DropdownMenu({
+  list,
+  setList,
+  caption,
+  urlToSendTo,
+  position,
+  setShowDropdown,
+  correctCounter,
+  setCorrectCounter,
+}) {
   const [pkIdSelected, setPkIdSelected] = useState("");
+  const [pkIndexSelected, setPkIndexSelected] = useState();
 
   function sendSelection() {
-    axios
-      .post(urlToSendTo, { pkIdSelected, position })
-      .then((response) => console.log(response.data));
+    setShowDropdown(false);
+    axios.post(urlToSendTo, { pkIdSelected, position }).then((response) => {
+      if (response.data.isCorrect) {
+        for (const item of list) {
+          if (item.id == pkIdSelected) {
+            item.isCorrect = true;
+            setCorrectCounter(correctCounter + 1);
+            setList(list.filter((a) => a.id !== item.id));
+            console.log(list);
+            break;
+          }
+        }
+      }
+      console.log(response.data.isCorrect, list);
+
+      //    let numCorrect = 0;
+      // pokemons.forEach((pokemon) => {
+      //   console.log(pokemon);
+      //   if (pokemon.isCorrect == true) {
+      //     console.log("counter incremented");
+      //     numCorrect++;
+      //   } else {
+      //     console.log("not present");
+      //   }
+      // });
+      // if (numCorrect == pokemons.length) {
+      //   console.log("Game over!!!");
+      // }
+    });
   }
 
   function onSelectionChange(e) {

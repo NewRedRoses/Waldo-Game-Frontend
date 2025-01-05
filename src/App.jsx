@@ -7,8 +7,9 @@ import axios from "axios";
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [clickCoords, setClickCoords] = useState({ x: 0, y: 0 });
-  const [pokemonSelected, setPokemonSelected] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [correctCounter, setCorrectCounter] = useState(0);
+  const [time, setTime] = useState(new Date());
 
   const backendUrl = "http://localhost:3000/";
 
@@ -16,6 +17,11 @@ function App() {
     axios(backendUrl + "pokemons").then((response) =>
       setPokemons(response.data),
     );
+    const intervalId = setInterval(() => {
+      setTime(new Date());
+    });
+
+    return () => clearInterval(intervalId);
   }, []);
 
   function handleMouseClick(e) {
@@ -29,15 +35,26 @@ function App() {
   return (
     <div className="content">
       <div className="greeting-msg-container">
-        <p>Select these 3 Pokemon in the picture:</p>
-        <ul className="pokemons-container">
-          {pokemons.map((pk) => (
-            <li key={pk.id} className="pokemon-item">
-              <img src={pk.sprite} alt={`${pk.name}'s picture`} width="100" />
-              {pk.name}
-            </li>
-          ))}
-        </ul>
+        {correctCounter < 3 ? (
+          <div>
+            <p>Find these 3 Pokemon in the picture below: </p>
+            <ul className="pokemons-container">
+              {pokemons.map((pk) => (
+                <li key={pk.id} className="pokemon-item">
+                  <img
+                    src={pk.sprite}
+                    alt={`${pk.name}'s picture`}
+                    width="100"
+                  />
+                  {pk.name}
+                </li>
+              ))}
+            </ul>
+            {"Correct: " + correctCounter}
+          </div>
+        ) : (
+          "Game Over"
+        )}
       </div>
       <img
         src={PokemonWaldoPicture}
@@ -50,9 +67,13 @@ function App() {
       {showDropdown && (
         <DropdownMenu
           list={pokemons}
+          setList={setPokemons}
           caption={"Which Pokemon is this?"}
           urlToSendTo={backendUrl + "validate"}
           position={clickCoords}
+          setShowDropdown={setShowDropdown}
+          correctCounter={correctCounter}
+          setCorrectCounter={setCorrectCounter}
         />
       )}
     </div>
