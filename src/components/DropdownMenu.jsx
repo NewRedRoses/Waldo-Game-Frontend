@@ -22,26 +22,10 @@ export default function DropdownMenu({
             item.isCorrect = true;
             setCorrectCounter(correctCounter + 1);
             setList(list.filter((a) => a.id !== item.id));
-            console.log(list);
             break;
           }
         }
       }
-      console.log(response.data.isCorrect, list);
-
-      //    let numCorrect = 0;
-      // pokemons.forEach((pokemon) => {
-      //   console.log(pokemon);
-      //   if (pokemon.isCorrect == true) {
-      //     console.log("counter incremented");
-      //     numCorrect++;
-      //   } else {
-      //     console.log("not present");
-      //   }
-      // });
-      // if (numCorrect == pokemons.length) {
-      //   console.log("Game over!!!");
-      // }
     });
   }
 
@@ -58,7 +42,6 @@ export default function DropdownMenu({
         top: `${position.y}px`,
       }}
     >
-      {console.log(position, pkIdSelected)}
       <div className="dropdown-caption">{caption}</div>
       <ul>
         {list.map((item) => {
