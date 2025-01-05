@@ -3,6 +3,7 @@ import "./App.css";
 import PokemonWaldoPicture from "./Images/LFcompletepg.jpg";
 import DropdownMenu from "./components/DropdownMenu";
 import axios from "axios";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -25,18 +26,10 @@ function App() {
     setClickCoords({ x, y });
     setShowDropdown(!showDropdown);
   }
-  /*
-   * on mouse click on img
-   *   place a marker on mouse click
-   *
-   *
-   *   on handle mouse click function:
-   *     set visibility to on
-   *
-   * */
 
   return (
     <div className="content">
+      <Navbar />
       <div className="greeting-msg-container">
         {correctCounter < 3 ? (
           <div>
