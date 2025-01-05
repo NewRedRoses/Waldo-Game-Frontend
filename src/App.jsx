@@ -64,18 +64,19 @@ function App() {
         style={{ objectFit: "contain" }}
         onClick={(e) => handleMouseClick(e)}
       />
-      {showDropdown && (
-        <DropdownMenu
-          list={pokemons}
-          setList={setPokemons}
-          caption={"Which Pokemon is this?"}
-          urlToSendTo={backendUrl + "validate"}
-          position={clickCoords}
-          setShowDropdown={setShowDropdown}
-          correctCounter={correctCounter}
-          setCorrectCounter={setCorrectCounter}
-        />
-      )}
+      {showDropdown ||
+        (correctCounter < 3 && (
+          <DropdownMenu
+            list={pokemons}
+            setList={setPokemons}
+            caption={"Which Pokemon is this?"}
+            urlToSendTo={backendUrl + "validate"}
+            position={clickCoords}
+            setShowDropdown={setShowDropdown}
+            correctCounter={correctCounter}
+            setCorrectCounter={setCorrectCounter}
+          />
+        ))}
     </div>
   );
 }
